@@ -16,6 +16,7 @@ for name, cid in channels.items():
     data = json.loads(r.stdout)
     subs = data.get("channel_follower_count")
     out = ROOT / "stats" / f"{name}.csv"
+    out.parent.mkdir(exist_ok=True)
     new = not out.exists()
     with open(out, "a", newline="", encoding="utf-8") as f:
         w = csv.writer(f)
